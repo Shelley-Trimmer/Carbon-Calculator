@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Carbon Footprint Calculator</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="style 11.css" />
+</head>
+<body>
+  <nav>
+    <a href="carbon 1.html">Carbon Calculator</a>
+  </nav>
+
+  <div class="page">
+    <div class="card">
+      <div class="card-header">
+        <div class="tag">Carbon footprint</div>
+        <h1>Personal carbon footprint calculator</h1>
+        <p>Enter a few details about your travel, home energy, and diet to estimate your annual carbon emissions.</p>
+      </div>
+
+      <div class="grid">
+        <!-- ==== LEFT: FORM ==== -->
+        <div class="card">
+          <h2>Inputs</h2>
+          <p>Use your best guess; this tool is for rough estimates, not exact reporting.</p>
+
+          <div class="form-group">
+            <label for="carMiles">
+              Car travel per year
+              <span class="helper">(miles)</span>
+            </label>
+            <input type="number" id="carMiles" min="0" placeholder="e.g. 5000" />
+            <div id="carError" class="error-text">Please enter a valid non-negative number.</div>
+          </div>
+
+          <div class="form-group">
+            <label for="busMiles">
+              Bus travel per year
+              <span class="helper">(miles)</span>
+            </label>
+            <input type="number" id="busMiles" min="0" placeholder="e.g. 1200" />
+          </div>
+
+          <div class="form-group">
+            <label for="trainMiles">
+              Train travel per year
+              <span class="helper">(miles)</span>
+            </label>
+            <input type="number" id="trainMiles" min="0" placeholder="e.g. 1500" />
+          </div>
+
+          <div class="form-group">
+            <label for="evMiles">
+              Electric vehicle travel
+              <span class="helper">(miles)</span>
+            </label>
+            <input type="number" id="evMiles" min="0" placeholder="e.g. 3000" />
+          </div>
+
+          <div class="form-group">
+            <label for="cycleMiles">
+              Cycling
+              <span class="helper">(miles — zero emissions)</span>
+            </label>
+            <input type="number" id="cycleMiles" min="0" placeholder="e.g. 500" />
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="shortFlights">Short flights (per year)</label>
+              <input type="number" id="shortFlights" min="0" placeholder="e.g. 2" />
+            </div>
+            <div class="form-group">
+              <label for="longFlights">Long flights (per year)</label>
+              <input type="number" id="longFlights" min="0" placeholder="e.g. 1" />
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="electricity">Electricity (kWh/year)</label>
+              <input type="number" id="electricity" min="0" placeholder="e.g. 2500" />
+            </div>
+            <div class="form-group">
+              <label for="gas">Gas/Heating fuel (kWh/year)</label>
+              <input type="number" id="gas" min="0" placeholder="e.g. 8000" />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Diet pattern</label>
+            <div class="radio-group">
+              <label class="radio-pill">
+                <input type="radio" name="diet" value="plant" checked />
+                <span>Mostly plant-based</span>
+              </label>
+              <label class="radio-pill">
+                <input type="radio" name="diet" value="mixed" />
+                <span>Mixed</span>
+              </label>
+              <label class="radio-pill">
+                <input type="radio" name="diet" value="meat" />
+                <span>Meat-heavy</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="button-row">
+            <button class="btn-primary" id="calculateBtn">Calculate footprint</button>
+            <button class="btn-secondary" id="resetBtn" type="button">Reset</button>
+          </div>
+        </div>
+
+        <!-- ==== RIGHT: RESULTS ==== -->
+        <div class="card">
+          <h2>Results</h2>
+          <div id="resultsContent">
+            <div class="result-main" id="totalResult">— kg CO₂e</div>
+            <div class="result-sub">Per person, per year (estimate)</div>
+            <div id="ratingBadge"></div>
+            <div class="result-breakdown">
+              <div class="result-row">
+                <span>Transport</span>
+                <span id="transportResult">— kg CO₂e</span>
+              </div>
+              <div class="result-row">
+                <span>Bus travel</span>
+                <span id="busResult">— kg CO₂e</span>
+              </div>
+              <div class="result-row">
+                <span>Train travel</span>
+                <span id="trainResult">— kg CO₂e</span>
+              </div>
+              <div class="result-row">
+                <span>EV travel</span>
+                <span id="evResult">— kg CO₂e</span>
+              </div>
+              <div class="result-row">
+                <span>Cycling</span>
+                <span id="cycleResult">0 kg CO₂e</span>
+              </div>
+              <div class="result-row">
+                <span>Home energy</span>
+                <span id="homeResult">— kg CO₂e</span>
+              </div>
+              <div class="result-row">
+                <span>Diet</span>
+                <span id="dietResult">— kg CO₂e</span>
+              </div>
+            </div>
+          </div>
+
+          <canvas id="carbonChart" width="400" height="300"></canvas>
+
+          <h3 style="margin-top: 16px;">What could you try next?</h3>
+          <ul class="tips-list" id="tipsList">
+            <li>Try combining trips or walking/cycling for short journeys.</li>
+            <li>Switch to LED lighting and turn devices off at the socket.</li>
+            <li>Experiment with one or two plant-based days each week.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts loaded after DOM -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="script 1.js"></script>
+</body>
+</html>
